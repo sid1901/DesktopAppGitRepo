@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+import java.sql.*;
 
 class ButtonFrame extends JFrame
 {
@@ -44,8 +45,33 @@ public class ButtonDemo
   public static void main ( String[] args )
   {
     ButtonFrame frm = new ButtonFrame("Sales Demo"); // gives frame name
-
     frm.setSize( 750, 375 );     
-    frm.setVisible( true );   
+    frm.setVisible( true );
+    
+    try{
+    	// Step1 : Load the driver class
+    	Class.forName("oracle.jdbc.driver.OracleDriver");
+    	
+    	
+    	// Step2 : Create the connection object
+    	Connection con=DriverManager.getConnection(
+    			"jdbc:oracle:thin:@192.168.43.140:1522:SidDB3","HR","Poker$CSC1901");
+    	
+    	// Step3 : Create statement object
+    	Statement stmt = con.createStatement();
+    	
+    	//Step4 : Execute query p
+    	ResultSet rs=stmt.executeQuery("select count(*) from employees");
+    	while(rs.next())
+    		System.out.println(rs.getInt(1));
+    	
+    	//Step5 : Close connection
+    	con.close();
+    }
+    catch(Exception e){
+    	System.out.println(e);
+    }
+    
+    
   }
 }
