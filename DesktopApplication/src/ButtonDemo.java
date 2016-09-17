@@ -43,7 +43,7 @@ public class ButtonDemo
 {
   public static void main ( String[] args )
   {
-    ButtonFrame frm = new ButtonFrame("Sales Demo");
+    ButtonFrame frm = new ButtonFrame("Sales Demo"); // gives frame name
 
     frm.setSize( 750, 375 );     
     frm.setVisible( true );   
