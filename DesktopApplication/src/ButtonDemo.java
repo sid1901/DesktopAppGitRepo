@@ -16,7 +16,13 @@ class ButtonFrame extends JFrame
     setLayout( new FlowLayout() );      // set the layout manager
 
     b1 = new JButton("Start Sale"); // construct a JButton
-    add( b1 );                     // add the button to the JFrame
+    add( b1 ); 
+    b1.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent ae) {
+			//ButtonFrame.dispose();	
+			new StartSale("START SALE");
+		}
+	});// add the button to the JFrame
     
     b2 = new JButton("Add Customer and Customer List"); // construct a JButton
     add( b2 );                     // add the button to the JFrame
@@ -55,7 +61,7 @@ public class ButtonDemo
     	
     	// Step2 : Create the connection object
     	Connection con=DriverManager.getConnection(
-    			"jdbc:oracle:thin:@192.168.43.140:1522:SidDB3","HR","Poker$CSC1901");
+    			"jdbc:oracle:thin:@25.99.22.204:1522:SidDB3","HR","Poker$CSC1901");
     	
     	// Step3 : Create statement object
     	Statement stmt = con.createStatement();
@@ -69,6 +75,7 @@ public class ButtonDemo
     	con.close();
     }
     catch(Exception e){
+    	e.printStackTrace();
     	System.out.println(e);
     }
     
